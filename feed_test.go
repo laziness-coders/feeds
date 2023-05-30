@@ -75,33 +75,28 @@ var rssOutput = `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:
       <description>A discussion on controlled parallelism in golang</description>
       <content:encoded><![CDATA[<p>Go's goroutines make it easy to make <a href="http://collectiveidea.com/blog/archives/2012/12/03/playing-with-go-embarrassingly-parallel-scripts/">embarrassingly parallel programs</a>, but in many &quot;real world&quot; cases resources can be limited and attempting to do everything at once can exhaust your access to them.</p>]]></content:encoded>
       <author>Jason Moiron</author>
-      <pubDate>Wed, 16 Jan 2013 21:52:35 -0500</pubDate>
     </item>
     <item>
       <title>Logic-less Template Redux</title>
       <link>http://jmoiron.net/blog/logicless-template-redux/</link>
       <description>More thoughts on logicless templates</description>
-      <pubDate>Wed, 16 Jan 2013 21:52:35 -0500</pubDate>
     </item>
     <item>
       <title>Idiomatic Code Reuse in Go</title>
       <link>http://jmoiron.net/blog/idiomatic-code-reuse-in-go/</link>
       <description>How to use interfaces &lt;em&gt;effectively&lt;/em&gt;</description>
       <enclosure url="http://example.com/cover.jpg" length="123456" type="image/jpg"></enclosure>
-      <pubDate>Wed, 16 Jan 2013 21:52:35 -0500</pubDate>
     </item>
     <item>
       <title>Never Gonna Give You Up Mp3</title>
       <link>http://example.com/RickRoll.mp3</link>
       <description>Never gonna give you up - Never gonna let you down.</description>
       <enclosure url="http://example.com/RickRoll.mp3" length="123456" type="audio/mpeg"></enclosure>
-      <pubDate>Wed, 16 Jan 2013 21:52:35 -0500</pubDate>
     </item>
     <item>
       <title>String formatting in Go</title>
       <link>http://example.com/strings</link>
       <description>How to use things like %s, %v, %d, etc.</description>
-      <pubDate>Wed, 16 Jan 2013 21:52:35 -0500</pubDate>
     </item>
   </channel>
 </rss>`
