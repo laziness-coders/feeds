@@ -183,12 +183,14 @@ func TestFeed(t *testing.T) {
 			Author:      &Author{Name: "Jason Moiron", Email: "jmoiron@jmoiron.net"},
 			Created:     now,
 			Content:     `<p>Go's goroutines make it easy to make <a href="http://collectiveidea.com/blog/archives/2012/12/03/playing-with-go-embarrassingly-parallel-scripts/">embarrassingly parallel programs</a>, but in many &quot;real world&quot; cases resources can be limited and attempting to do everything at once can exhaust your access to them.</p>`,
+			PubDate:     "Wed, 16 Jan 2013 21:52:35 -0500",
 		},
 		{
 			Title:       "Logic-less Template Redux",
 			Link:        &Link{Href: "http://jmoiron.net/blog/logicless-template-redux/"},
 			Description: "More thoughts on logicless templates",
 			Created:     now,
+			PubDate:     "Wed, 16 Jan 2013 21:52:35 -0500",
 		},
 		{
 			Title:       "Idiomatic Code Reuse in Go",
@@ -203,12 +205,14 @@ func TestFeed(t *testing.T) {
 			Enclosure:   &Enclosure{Url: "http://example.com/RickRoll.mp3", Length: "123456", Type: "audio/mpeg"},
 			Description: "Never gonna give you up - Never gonna let you down.",
 			Created:     now,
+			PubDate:     "Wed, 16 Jan 2013 21:52:35 -0500",
 		},
 		{
 			Title:       "String formatting in Go",
 			Link:        &Link{Href: "http://example.com/strings"},
 			Description: "How to use things like %s, %v, %d, etc.",
 			Created:     now,
+			PubDate:     "Wed, 16 Jan 2013 21:52:35 -0500",
 		}}
 
 	atom, err := feed.ToAtom()
@@ -252,7 +256,7 @@ func TestFeed(t *testing.T) {
 	if err := feed.WriteJSON(&buf); err != nil {
 		t.Errorf("unexpected error writing JSON: %v", err)
 	}
-	if got := buf.String(); got != jsonOutput+"\n" { //json.Encode appends a newline after the JSON output: https://github.com/golang/go/commit/6f25f1d4c901417af1da65e41992d71c30f64f8f#diff-50848cbd686f250623a2ef6ddb07e157
+	if got := buf.String(); got != jsonOutput+"\n" { // json.Encode appends a newline after the JSON output: https://github.com/golang/go/commit/6f25f1d4c901417af1da65e41992d71c30f64f8f#diff-50848cbd686f250623a2ef6ddb07e157
 		t.Errorf("JSON not what was expected.  Got:\n||%s||\n\nExpected:\n||%s||\n", got, jsonOutput)
 	}
 }
@@ -316,32 +320,22 @@ var rssOutputSorted = `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" 
     <item>
       <title>Limiting Concurrency in Go</title>
       <link>http://jmoiron.net/blog/limiting-concurrency-in-go/</link>
-      <description></description>
-      <pubDate>Fri, 18 Jan 2013 21:52:35 -0500</pubDate>
     </item>
     <item>
       <title>Logic-less Template Redux</title>
       <link>http://jmoiron.net/blog/logicless-template-redux/</link>
-      <description></description>
-      <pubDate>Thu, 17 Jan 2013 21:52:35 -0500</pubDate>
     </item>
     <item>
       <title>Idiomatic Code Reuse in Go</title>
       <link>http://jmoiron.net/blog/idiomatic-code-reuse-in-go/</link>
-      <description></description>
-      <pubDate>Thu, 17 Jan 2013 09:52:35 -0500</pubDate>
     </item>
     <item>
       <title>Never Gonna Give You Up Mp3</title>
       <link>http://example.com/RickRoll.mp3</link>
-      <description></description>
-      <pubDate>Thu, 17 Jan 2013 07:52:35 -0500</pubDate>
     </item>
     <item>
       <title>String formatting in Go</title>
       <link>http://example.com/strings</link>
-      <description></description>
-      <pubDate>Wed, 16 Jan 2013 21:52:35 -0500</pubDate>
     </item>
   </channel>
 </rss>`
@@ -477,7 +471,7 @@ func TestFeedSorted(t *testing.T) {
 	if err := feed.WriteJSON(&buf); err != nil {
 		t.Errorf("unexpected error writing JSON: %v", err)
 	}
-	if got := buf.String(); got != jsonOutputSorted+"\n" { //json.Encode appends a newline after the JSON output: https://github.com/golang/go/commit/6f25f1d4c901417af1da65e41992d71c30f64f8f#diff-50848cbd686f250623a2ef6ddb07e157
+	if got := buf.String(); got != jsonOutputSorted+"\n" { // json.Encode appends a newline after the JSON output: https://github.com/golang/go/commit/6f25f1d4c901417af1da65e41992d71c30f64f8f#diff-50848cbd686f250623a2ef6ddb07e157
 		t.Errorf("JSON not what was expected.  Got:\n||%s||\n\nExpected:\n||%s||\n", got, jsonOutputSorted)
 	}
 }
