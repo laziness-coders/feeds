@@ -178,14 +178,12 @@ func TestFeed(t *testing.T) {
 			Author:      &Author{Name: "Jason Moiron", Email: "jmoiron@jmoiron.net"},
 			Created:     now,
 			Content:     `<p>Go's goroutines make it easy to make <a href="http://collectiveidea.com/blog/archives/2012/12/03/playing-with-go-embarrassingly-parallel-scripts/">embarrassingly parallel programs</a>, but in many &quot;real world&quot; cases resources can be limited and attempting to do everything at once can exhaust your access to them.</p>`,
-			PubDate:     "Wed, 16 Jan 2013 21:52:35 -0500",
 		},
 		{
 			Title:       "Logic-less Template Redux",
 			Link:        &Link{Href: "http://jmoiron.net/blog/logicless-template-redux/"},
 			Description: "More thoughts on logicless templates",
 			Created:     now,
-			PubDate:     "Wed, 16 Jan 2013 21:52:35 -0500",
 		},
 		{
 			Title:       "Idiomatic Code Reuse in Go",
@@ -200,14 +198,12 @@ func TestFeed(t *testing.T) {
 			Enclosure:   &Enclosure{Url: "http://example.com/RickRoll.mp3", Length: "123456", Type: "audio/mpeg"},
 			Description: "Never gonna give you up - Never gonna let you down.",
 			Created:     now,
-			PubDate:     "Wed, 16 Jan 2013 21:52:35 -0500",
 		},
 		{
 			Title:       "String formatting in Go",
 			Link:        &Link{Href: "http://example.com/strings"},
 			Description: "How to use things like %s, %v, %d, etc.",
 			Created:     now,
-			PubDate:     "Wed, 16 Jan 2013 21:52:35 -0500",
 		}}
 
 	atom, err := feed.ToAtom()
