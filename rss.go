@@ -12,10 +12,11 @@ import (
 
 // private wrapper around the RssFeed which gives us the <rss>..</rss> xml
 type RssFeedXml struct {
-	XMLName          xml.Name `xml:"rss"`
-	Version          string   `xml:"version,attr"`
-	ContentNamespace string   `xml:"xmlns:content,attr"`
-	Channel          *RssFeed
+	XMLName                xml.Name `xml:"rss"`
+	Version                string   `xml:"version,attr"`
+	ContentNamespace       string   `xml:"xmlns:content,attr"`
+	GoogleContentNamespace string   `xml:"xmlns:g,attr,omitempty"`
+	Channel                *RssFeed
 }
 
 type RssContent struct {
@@ -124,7 +125,7 @@ func newRssItem(i *Item) *RssItem {
 		Description: i.Description,
 		Guid:        i.Id,
 		PubDate:     i.PubDate,
-		
+
 		MediaContent: i.MediaContent,
 		GoogleId:     i.GoogleId,
 		GoogleTitle:  i.GoogleTitle,
@@ -213,9 +214,16 @@ func (r *Rss) FeedXml() interface{} {
 
 // FeedXml returns an XML-ready object for an RssFeed object
 func (r *RssFeed) FeedXml() interface{} {
-	return &RssFeedXml{
+	rssFeedXml := &RssFeedXml{
 		Version:          "2.0",
 		Channel:          r,
 		ContentNamespace: "http://purl.org/rss/1.0/modules/content/",
 	}
+
+	if len(r.Items) > 0 && r.Items[0].GoogleId != "" {
+		rssFeedXml.ContentNamespace = ""
+		rssFeedXml.GoogleContentNamespace = "http://base.google.com/ns/1.0"
+	}
+
+	return rssFeedXml
 }
