@@ -14,7 +14,7 @@ import (
 type RssFeedXml struct {
 	XMLName                xml.Name `xml:"rss"`
 	Version                string   `xml:"version,attr"`
-	ContentNamespace       string   `xml:"xmlns:content,attr"`
+	ContentNamespace       string   `xml:"xmlns:content,attr,omitempty"`
 	GoogleContentNamespace string   `xml:"xmlns:g,attr,omitempty"`
 	Channel                *RssFeed
 }
