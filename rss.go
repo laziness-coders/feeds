@@ -16,7 +16,9 @@ type RssFeedXml struct {
 	Version                string   `xml:"version,attr"`
 	ContentNamespace       string   `xml:"xmlns:content,attr,omitempty"`
 	GoogleContentNamespace string   `xml:"xmlns:g,attr,omitempty"`
-	Channel                *RssFeed
+	MediaContentNamespace  string   `xml:"xmlns:media,attr,omitempty"`
+
+	Channel *RssFeed
 }
 
 type RssContent struct {
@@ -63,6 +65,14 @@ type RssFeed struct {
 	Image          *RssImage
 	TextInput      *RssTextInput
 	Items          []*RssItem `xml:"item"`
+	Atom           *ChannelAtom
+}
+
+type ChannelAtom struct {
+	XMLName xml.Name `xml:"atom"`
+	Href    string   `xml:"href,attr"`
+	Rel     string   `xml:"rel,attr"`
+	Type    string   `xml:"type,attr"`
 }
 
 type RssItem struct {
@@ -79,8 +89,8 @@ type RssItem struct {
 	PubDate     string `xml:"pubDate,omitempty"` // created or updated
 	Source      string `xml:"source,omitempty"`
 
+	MediaContent *MediaContent
 	// Google Merchant Center
-	MediaContent string `xml:"media:content,omitempty"`
 	GoogleId     string `xml:"g:id,omitempty"`
 	GoogleTitle  string `xml:"g:title,omitempty"`
 	GoogleDesc   string `xml:"g:description,omitempty"`
@@ -104,6 +114,11 @@ type RssItem struct {
 	GoogleLabel3 string `xml:"g:custom_label_3,omitempty"`
 	GoogleLabel4 string `xml:"g:custom_label_4,omitempty"`
 	GoogleGroup  string `xml:"g:item_group_id,omitempty"`
+}
+
+type MediaContent struct {
+	XMLName xml.Name `xml:"media:content"`
+	Url     string   `xml:"url,attr"`
 }
 
 type RssEnclosure struct {
@@ -198,6 +213,7 @@ func (r *Rss) RssFeed() *RssFeed {
 		LastBuildDate:  build,
 		Copyright:      r.Copyright,
 		Image:          image,
+		Atom:           r.Atom,
 	}
 	for _, i := range r.Items {
 		channel.Items = append(channel.Items, newRssItem(i))
@@ -215,14 +231,18 @@ func (r *Rss) FeedXml() interface{} {
 // FeedXml returns an XML-ready object for an RssFeed object
 func (r *RssFeed) FeedXml() interface{} {
 	rssFeedXml := &RssFeedXml{
-		Version:          "2.0",
-		Channel:          r,
-		ContentNamespace: "http://purl.org/rss/1.0/modules/content/",
+		Version: "2.0",
+		Channel: r,
 	}
 
-	if len(r.Items) > 0 && r.Items[0].GoogleId != "" {
-		rssFeedXml.ContentNamespace = ""
-		rssFeedXml.GoogleContentNamespace = "http://base.google.com/ns/1.0"
+	if len(r.Items) > 0 {
+		if r.Items[0].GoogleId != "" {
+			rssFeedXml.GoogleContentNamespace = "http://base.google.com/ns/1.0"
+		}
+
+		if r.Items[0].MediaContent != nil {
+			rssFeedXml.MediaContentNamespace = "http://search.yahoo.com/mrss/"
+		}
 	}
 
 	return rssFeedXml

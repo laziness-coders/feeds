@@ -38,7 +38,7 @@ type Item struct {
 	Enclosure   *Enclosure
 	Content     string
 	// Google Merchant Center
-	MediaContent string
+	MediaContent *MediaContent
 	GoogleId     string
 	GoogleTitle  string
 	GoogleDesc   string
@@ -76,6 +76,7 @@ type Feed struct {
 	Items       []*Item
 	Copyright   string
 	Image       *Image
+	Atom        *ChannelAtom
 }
 
 // add a new Item to a Feed
