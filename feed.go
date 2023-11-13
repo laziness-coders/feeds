@@ -38,30 +38,31 @@ type Item struct {
 	Enclosure   *Enclosure
 	Content     string
 	// Google Merchant Center
-	MediaContent *MediaContent
-	GoogleId     string
-	GoogleTitle  string
-	GoogleDesc   string
-	GoogleLink   string
-	GoogleCond   string
-	GooglePrice  string
-	GoogleSale   string
-	GoogleAvail  string
-	GoogleImage  string
-	GoogleGtin   string
-	GoogleMpn    string
-	GoogleBrand  string
-	GoogleCat    string
-	GoogleShip   string
-	GoogleInv    string
-	GoogleColor  string
-	GoogleType   string
-	GoogleLabel0 string
-	GoogleLabel1 string
-	GoogleLabel2 string
-	GoogleLabel3 string
-	GoogleLabel4 string
-	GoogleGroup  string
+	MediaContent      *MediaContent
+	GoogleId          string
+	GoogleTitle       string
+	GoogleDesc        string
+	GoogleLink        string
+	GoogleCond        string
+	GooglePrice       string
+	GoogleSale        string
+	GoogleAvail       string
+	GoogleImage       string
+	GoogleGtin        string
+	GoogleMpn         string
+	GoogleBrand       string
+	GoogleCat         string
+	GoogleShip        string
+	GoogleInv         string
+	GoogleColor       string
+	GoogleType        string
+	GoogleLabel0      string
+	GoogleLabel1      string
+	GoogleLabel2      string
+	GoogleLabel3      string
+	GoogleLabel4      string
+	GoogleGroup       string
+	GooglePromotionId string
 }
 
 type Feed struct {

@@ -91,29 +91,30 @@ type RssItem struct {
 
 	MediaContent *MediaContent
 	// Google Merchant Center
-	GoogleId     string `xml:"g:id,omitempty"`
-	GoogleTitle  string `xml:"g:title,omitempty"`
-	GoogleDesc   string `xml:"g:description,omitempty"`
-	GoogleLink   string `xml:"g:link,omitempty"`
-	GoogleCond   string `xml:"g:condition,omitempty"`
-	GooglePrice  string `xml:"g:price,omitempty"`
-	GoogleSale   string `xml:"g:sale_price,omitempty"`
-	GoogleAvail  string `xml:"g:availability,omitempty"`
-	GoogleImage  string `xml:"g:image_link,omitempty"`
-	GoogleGtin   string `xml:"g:gtin,omitempty"`
-	GoogleMpn    string `xml:"g:mpn,omitempty"`
-	GoogleBrand  string `xml:"g:brand,omitempty"`
-	GoogleCat    string `xml:"g:google_product_category,omitempty"`
-	GoogleShip   string `xml:"g:shipping,omitempty"`
-	GoogleInv    string `xml:"g:inventory,omitempty"`
-	GoogleColor  string `xml:"g:color,omitempty"`
-	GoogleType   string `xml:"g:product_type,omitempty"`
-	GoogleLabel0 string `xml:"g:custom_label_0,omitempty"`
-	GoogleLabel1 string `xml:"g:custom_label_1,omitempty"`
-	GoogleLabel2 string `xml:"g:custom_label_2,omitempty"`
-	GoogleLabel3 string `xml:"g:custom_label_3,omitempty"`
-	GoogleLabel4 string `xml:"g:custom_label_4,omitempty"`
-	GoogleGroup  string `xml:"g:item_group_id,omitempty"`
+	GoogleId          string `xml:"g:id,omitempty"`
+	GoogleTitle       string `xml:"g:title,omitempty"`
+	GoogleDesc        string `xml:"g:description,omitempty"`
+	GoogleLink        string `xml:"g:link,omitempty"`
+	GoogleCond        string `xml:"g:condition,omitempty"`
+	GooglePrice       string `xml:"g:price,omitempty"`
+	GoogleSale        string `xml:"g:sale_price,omitempty"`
+	GoogleAvail       string `xml:"g:availability,omitempty"`
+	GoogleImage       string `xml:"g:image_link,omitempty"`
+	GoogleGtin        string `xml:"g:gtin,omitempty"`
+	GoogleMpn         string `xml:"g:mpn,omitempty"`
+	GoogleBrand       string `xml:"g:brand,omitempty"`
+	GoogleCat         string `xml:"g:google_product_category,omitempty"`
+	GoogleShip        string `xml:"g:shipping,omitempty"`
+	GoogleInv         string `xml:"g:inventory,omitempty"`
+	GoogleColor       string `xml:"g:color,omitempty"`
+	GoogleType        string `xml:"g:product_type,omitempty"`
+	GoogleLabel0      string `xml:"g:custom_label_0,omitempty"`
+	GoogleLabel1      string `xml:"g:custom_label_1,omitempty"`
+	GoogleLabel2      string `xml:"g:custom_label_2,omitempty"`
+	GoogleLabel3      string `xml:"g:custom_label_3,omitempty"`
+	GoogleLabel4      string `xml:"g:custom_label_4,omitempty"`
+	GoogleGroup       string `xml:"g:item_group_id,omitempty"`
+	GooglePromotionId string `xml:"g:promotion_id,omitempty"`
 }
 
 type MediaContent struct {
@@ -141,30 +142,31 @@ func newRssItem(i *Item) *RssItem {
 		Guid:        i.Id,
 		PubDate:     i.PubDate,
 
-		MediaContent: i.MediaContent,
-		GoogleId:     i.GoogleId,
-		GoogleTitle:  i.GoogleTitle,
-		GoogleDesc:   i.GoogleDesc,
-		GoogleLink:   i.GoogleLink,
-		GoogleCond:   i.GoogleCond,
-		GooglePrice:  i.GooglePrice,
-		GoogleSale:   i.GoogleSale,
-		GoogleAvail:  i.GoogleAvail,
-		GoogleImage:  i.GoogleImage,
-		GoogleGtin:   i.GoogleGtin,
-		GoogleMpn:    i.GoogleMpn,
-		GoogleBrand:  i.GoogleBrand,
-		GoogleCat:    i.GoogleCat,
-		GoogleShip:   i.GoogleShip,
-		GoogleInv:    i.GoogleInv,
-		GoogleColor:  i.GoogleColor,
-		GoogleType:   i.GoogleType,
-		GoogleLabel0: i.GoogleLabel0,
-		GoogleLabel1: i.GoogleLabel1,
-		GoogleLabel2: i.GoogleLabel2,
-		GoogleLabel3: i.GoogleLabel3,
-		GoogleLabel4: i.GoogleLabel4,
-		GoogleGroup:  i.GoogleGroup,
+		MediaContent:      i.MediaContent,
+		GoogleId:          i.GoogleId,
+		GoogleTitle:       i.GoogleTitle,
+		GoogleDesc:        i.GoogleDesc,
+		GoogleLink:        i.GoogleLink,
+		GoogleCond:        i.GoogleCond,
+		GooglePrice:       i.GooglePrice,
+		GoogleSale:        i.GoogleSale,
+		GoogleAvail:       i.GoogleAvail,
+		GoogleImage:       i.GoogleImage,
+		GoogleGtin:        i.GoogleGtin,
+		GoogleMpn:         i.GoogleMpn,
+		GoogleBrand:       i.GoogleBrand,
+		GoogleCat:         i.GoogleCat,
+		GoogleShip:        i.GoogleShip,
+		GoogleInv:         i.GoogleInv,
+		GoogleColor:       i.GoogleColor,
+		GoogleType:        i.GoogleType,
+		GoogleLabel0:      i.GoogleLabel0,
+		GoogleLabel1:      i.GoogleLabel1,
+		GoogleLabel2:      i.GoogleLabel2,
+		GoogleLabel3:      i.GoogleLabel3,
+		GoogleLabel4:      i.GoogleLabel4,
+		GoogleGroup:       i.GoogleGroup,
+		GooglePromotionId: i.GooglePromotionId,
 	}
 	if i.Link != nil {
 		item.Link = i.Link.Href
