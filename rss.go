@@ -7,8 +7,11 @@ package feeds
 import (
 	"encoding/xml"
 	"fmt"
+	"strings"
 	"time"
 )
+
+const googleAdditionalImageSeparator = ","
 
 // private wrapper around the RssFeed which gives us the <rss>..</rss> xml
 type RssFeedXml struct {
@@ -91,31 +94,31 @@ type RssItem struct {
 
 	MediaContent *MediaContent
 	// Google Merchant Center
-	GoogleId              string `xml:"g:id,omitempty"`
-	GoogleTitle           string `xml:"g:title,omitempty"`
-	GoogleDesc            string `xml:"g:description,omitempty"`
-	GoogleLink            string `xml:"g:link,omitempty"`
-	GoogleCond            string `xml:"g:condition,omitempty"`
-	GooglePrice           string `xml:"g:price,omitempty"`
-	GoogleSale            string `xml:"g:sale_price,omitempty"`
-	GoogleAvail           string `xml:"g:availability,omitempty"`
-	GoogleImage           string `xml:"g:image_link,omitempty"`
-	GoogleAdditionalImage string `xml:"additional_image_link,omitempty"`
-	GoogleGtin            string `xml:"g:gtin,omitempty"`
-	GoogleMpn             string `xml:"g:mpn,omitempty"`
-	GoogleBrand           string `xml:"g:brand,omitempty"`
-	GoogleCat             string `xml:"g:google_product_category,omitempty"`
-	GoogleShip            string `xml:"g:shipping,omitempty"`
-	GoogleInv             string `xml:"g:inventory,omitempty"`
-	GoogleColor           string `xml:"g:color,omitempty"`
-	GoogleType            string `xml:"g:product_type,omitempty"`
-	GoogleLabel0          string `xml:"g:custom_label_0,omitempty"`
-	GoogleLabel1          string `xml:"g:custom_label_1,omitempty"`
-	GoogleLabel2          string `xml:"g:custom_label_2,omitempty"`
-	GoogleLabel3          string `xml:"g:custom_label_3,omitempty"`
-	GoogleLabel4          string `xml:"g:custom_label_4,omitempty"`
-	GoogleGroup           string `xml:"g:item_group_id,omitempty"`
-	GooglePromotionId     string `xml:"g:promotion_id,omitempty"`
+	GoogleId              string   `xml:"g:id,omitempty"`
+	GoogleTitle           string   `xml:"g:title,omitempty"`
+	GoogleDesc            string   `xml:"g:description,omitempty"`
+	GoogleLink            string   `xml:"g:link,omitempty"`
+	GoogleCond            string   `xml:"g:condition,omitempty"`
+	GooglePrice           string   `xml:"g:price,omitempty"`
+	GoogleSale            string   `xml:"g:sale_price,omitempty"`
+	GoogleAvail           string   `xml:"g:availability,omitempty"`
+	GoogleImage           string   `xml:"g:image_link,omitempty"`
+	GoogleAdditionalImage []string `xml:"g:additional_image_link,omitempty"`
+	GoogleGtin            string   `xml:"g:gtin,omitempty"`
+	GoogleMpn             string   `xml:"g:mpn,omitempty"`
+	GoogleBrand           string   `xml:"g:brand,omitempty"`
+	GoogleCat             string   `xml:"g:google_product_category,omitempty"`
+	GoogleShip            string   `xml:"g:shipping,omitempty"`
+	GoogleInv             string   `xml:"g:inventory,omitempty"`
+	GoogleColor           string   `xml:"g:color,omitempty"`
+	GoogleType            string   `xml:"g:product_type,omitempty"`
+	GoogleLabel0          string   `xml:"g:custom_label_0,omitempty"`
+	GoogleLabel1          string   `xml:"g:custom_label_1,omitempty"`
+	GoogleLabel2          string   `xml:"g:custom_label_2,omitempty"`
+	GoogleLabel3          string   `xml:"g:custom_label_3,omitempty"`
+	GoogleLabel4          string   `xml:"g:custom_label_4,omitempty"`
+	GoogleGroup           string   `xml:"g:item_group_id,omitempty"`
+	GooglePromotionId     string   `xml:"g:promotion_id,omitempty"`
 }
 
 type MediaContent struct {
@@ -153,7 +156,7 @@ func newRssItem(i *Item) *RssItem {
 		GoogleSale:            i.GoogleSale,
 		GoogleAvail:           i.GoogleAvail,
 		GoogleImage:           i.GoogleImage,
-		GoogleAdditionalImage: i.GoogleAdditionalImage,
+		GoogleAdditionalImage: strings.Split(i.GoogleAdditionalImage, googleAdditionalImageSeparator),
 		GoogleGtin:            i.GoogleGtin,
 		GoogleMpn:             i.GoogleMpn,
 		GoogleBrand:           i.GoogleBrand,
