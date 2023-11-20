@@ -7,7 +7,7 @@ jobs:
   "test": &test
     docker:
       - image: circleci/golang:latest
-    working_directory: /go/src/github.com/gorilla/feeds
+    working_directory: /go/src/github.com/laziness-coders/feeds
     steps: &steps
       - checkout
       - run: go version
